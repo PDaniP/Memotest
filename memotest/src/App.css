@@ -1,0 +1,255 @@
+
+/* Contenedor principal de la aplicación. */
+.app {
+  /* Ocupa al menos toda la altura visible de la ventana. */
+  min-height: 100vh;
+
+  /* Centra el contenido horizontalmente. */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* Separa el contenido de los bordes de la pantalla. */
+  padding: 40px 20px;
+
+  /* Colores provisionales para nuestra aplicación. */
+  background-color: #101019;
+  color: #f0e6d2;
+
+  /* Define una tipografía sencilla y legible. */
+  font-family: Arial, sans-serif;
+}
+
+/* Encabezado con el nombre del juego. */
+.app-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* Título principal. */
+.app-header h1 {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+/* Texto descriptivo del encabezado. */
+.app-header p {
+  color: #c3bdd5;
+  line-height: 1.6;
+}
+
+/* Panel central de bienvenida. */
+.inicio {
+  /* Limita el ancho para mantener el texto legible. */
+  width: 100%;
+  max-width: 500px;
+
+  /* Espacio interior del panel. */
+  padding: 32px;
+
+  /* Centra el contenido del panel. */
+  text-align: center;
+
+  /* Apariencia del panel. */
+  background-color: #28233c;
+  border: 1px solid #51466f;
+  border-radius: 16px;
+}
+
+/* Título del panel de bienvenida. */
+.inicio h2 {
+  margin-top: 0;
+  font-size: 1.7rem;
+}
+
+/* Descripción de las reglas básicas. */
+.inicio p {
+  color: #d0c9df;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+/* Botón para comenzar la partida. */
+.boton-iniciar {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+
+  /* Colores del botón. */
+  background-color: #8b6bd6;
+  color: #ffffff;
+
+  /* Texto del botón. */
+  font-size: 1rem;
+  font-weight: bold;
+
+  /* Cambia el cursor para indicar que es interactivo. */
+  cursor: pointer;
+
+  /* Suaviza los cambios visuales al pasar el cursor. */
+  transition: background-color 0.2s ease;
+}
+
+/* Color del botón cuando el usuario pasa el cursor por encima. */
+.boton-iniciar:hover {
+  background-color: #a18ae8;
+}
+
+/* Ajustes para pantallas pequeñas, como teléfonos. */
+@media (max-width: 600px) {
+  .app {
+    padding: 28px 16px;
+  }
+
+  .app-header h1 {
+    font-size: 2.4rem;
+  }
+
+  .inicio {
+    box-sizing: border-box;
+    padding: 24px 18px;
+  }
+}
+
+/* Panel que contiene el tiempo y el contador de parejas. */
+.panel-juego {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 28px;
+}
+
+/* Cada bloque de información del panel. */
+.dato-juego {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 120px;
+  padding: 14px 20px;
+  background-color: #28233c;
+  border: 1px solid #51466f;
+  border-radius: 10px;
+}
+
+/* Texto que describe cada dato. */
+.etiqueta {
+  color: #c3bdd5;
+  font-size: 0.9rem;
+}
+
+/* Valor del tiempo y de las parejas. */
+.valor {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+/* Cuadrícula que organiza las cartas del tablero. */
+.tablero {
+  display: grid;
+
+  /* Tres columnas para nuestras seis cartas provisionales. */
+  grid-template-columns: repeat(3, minmax(0, 110px));
+
+  /* Espacio entre las cartas. */
+  gap: 14px;
+
+  /* Centra la cuadrícula. */
+  justify-content: center;
+
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+/* Apariencia de cada carta boca abajo. */
+.carta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 3 / 4;
+  width: 100%;
+
+  border: 2px solid #8b6bd6;
+  border-radius: 12px;
+  background-color: #3a3155;
+  color: #f0e6d2;
+
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+/* Efecto visual al pasar el cursor por encima de una carta. */
+.carta:hover {
+  background-color: #514273;
+}
+
+/* Símbolo visible en el reverso de las cartas. */
+.carta-reverso {
+  font-size: 2.2rem;
+  font-weight: bold;
+}
+
+/* Adaptamos los espacios para teléfonos. */
+@media (max-width: 400px) {
+  .tablero {
+    grid-template-columns: repeat(3, minmax(0, 90px));
+    gap: 10px;
+  }
+
+  .panel-juego {
+    gap: 10px;
+  }
+
+  .dato-juego {
+    min-width: 0;
+    padding: 12px;
+  }
+}
+
+/* Contenedor del mensaje final de la partida. */
+.resultado-partida {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 500px;
+  margin: 24px auto;
+  padding: 24px;
+  border: 1px solid #8b6bd6;
+  border-radius: 12px;
+  background-color: #28233c;
+  text-align: center;
+}
+
+/* Título del resultado. */
+.resultado-partida h2 {
+  margin: 0;
+  color: #f0e6d2;
+}
+
+/* Texto descriptivo del resultado. */
+.resultado-partida p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Botón para comenzar una nueva partida. */
+.boton-reiniciar {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #8b6bd6;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Efecto visual del botón al pasar el cursor. */
+.boton-reiniciar:hover {
+  background-color: #7352bd;
+}

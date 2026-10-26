@@ -1,0 +1,19 @@
+
+/* Hace que el navegador calcule los tamaños de forma predecible. */
+* {
+  box-sizing: border-box;
+}
+
+/* Elimina los márgenes predeterminados de la página. */
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+/* Evita que el ancho de la página supere el de la ventana. */
+body {
+  min-width: 320px;
+  min-height: 100vh;
+}

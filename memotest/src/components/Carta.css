@@ -1,0 +1,38 @@
+
+/* Estilo base de cada carta. */
+.carta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  border: 2px solid #8b6bd6;
+  border-radius: 12px;
+  background-color: #28233c;
+  color: #f0e6d2;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Efecto visual al pasar el cursor. */
+.carta:hover {
+  transform: translateY(-3px);
+}
+
+/* Apariencia de una carta descubierta. */
+.carta.descubierta {
+  background-color: #443665;
+}
+
+/* Contenedor del símbolo o del signo de interrogación. */
+.carta-reverso {
+  user-select: none;
+}
+
+/* Adaptación para pantallas pequeñas. */
+@media (max-width: 480px) {
+  .carta {
+    min-height: 85px;
+    font-size: 2rem;
+  }
+}
