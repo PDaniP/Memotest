@@ -1,0 +1,8 @@
+Crea un memotest basado en parejas de cartas. 
+Requisitos: 
+Los requisitos del juego son bastante sencillos. 
+En primer lugar, que elegi la temática que quieras, como Pokémon, Star Wars, League of Legends, etc 
+La dinámica del juego consistirá en presentar un tablero con una serie de cartas
+boca abajo y revelar todas las parejas antes de que se acabe el tiempo. 
+El usuario tocará cada carta para darle la vuelta y, si dos de ellas coinciden al descubrirlas, se pondrán boca arriba. En caso contrario, se volverán a ocultar. 
+El juego se gana si se descubren todas las parejas dentro del límite de tiempo
