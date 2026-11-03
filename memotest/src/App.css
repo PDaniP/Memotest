@@ -146,15 +146,16 @@
   font-weight: bold;
 }
 
-/* Cuadrícula que organiza las cartas del tablero. */
+/* Cuadrícula cuyo número de columnas corresponde al nivel seleccionado. */
 .tablero {
   display: grid;
 
-  /* Tres columnas para nuestras seis cartas provisionales. */
-  grid-template-columns: repeat(3, minmax(0, 110px));
+  /* La cantidad de columnas se recibe desde el nivel activo. */
+  grid-template-columns: repeat(var(--columnas-tablero), minmax(0, 1fr));
 
-  /* Espacio entre las cartas. */
-  gap: 14px;
+  /* Limitamos el ancho para conservar cartas legibles en tableros grandes. */
+  max-width: 900px;
+  gap: clamp(6px, 1.5vw, 14px);
 
   /* Centra la cuadrícula. */
   justify-content: center;
@@ -194,8 +195,7 @@
 /* Adaptamos los espacios para teléfonos. */
 @media (max-width: 400px) {
   .tablero {
-    grid-template-columns: repeat(3, minmax(0, 90px));
-    gap: 10px;
+    gap: 5px;
   }
 
   .panel-juego {
@@ -252,4 +252,126 @@
 /* Efecto visual del botón al pasar el cursor. */
 .boton-reiniciar:hover {
   background-color: #7352bd;
+}
+
+/* Panel para elegir si la partida se juega individualmente o en duelo. */
+.seleccion-modo {
+  width: 100%;
+  max-width: 500px;
+  padding: 28px;
+  border: 1px solid #51466f;
+  border-radius: 16px;
+  background-color: #28233c;
+  text-align: center;
+}
+
+/* Título y descripción de las modalidades disponibles. */
+.seleccion-modo h2 {
+  margin-top: 0;
+}
+
+.seleccion-modo p {
+  color: #d0c9df;
+  line-height: 1.6;
+}
+
+/* Agrupamos las opciones de juego para que se adapten al ancho disponible. */
+.opciones-modo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* Estilo compartido por los botones que inician cada modalidad. */
+.boton-modo {
+  flex: 1 1 180px;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 8px;
+  background-color: #8b6bd6;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Indicamos visualmente que la modalidad puede seleccionarse. */
+.boton-modo:hover {
+  background-color: #7352bd;
+}
+
+/* Separamos el tamaño del tablero de la cantidad de parejas del nivel. */
+.detalle-nivel {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-weight: normal;
+}
+
+/* Botón para corregir la modalidad antes de iniciar la partida. */
+.boton-volver {
+  margin-top: 20px;
+  padding: 8px 12px;
+  border: 1px solid #8b6bd6;
+  border-radius: 8px;
+  background: transparent;
+  color: #f0e6d2;
+  cursor: pointer;
+}
+
+/* Aseguramos el tamaño completo del panel de selección en dispositivos móviles. */
+.boton-volver:hover {
+  background-color: #3a3155;
+}
+
+/* Diferenciamos al jugador que debe elegir las próximas cartas. */
+.dato-juego.jugador-activo {
+  border-color: #b69af7;
+  box-shadow: 0 0 0 2px #8b6bd6;
+}
+
+/* Asignamos un color identificable a cada jugador del duelo. */
+.dato-juego.jugador-uno .etiqueta:first-child {
+  color: #56d6c3;
+}
+
+.dato-juego.jugador-dos .etiqueta:first-child {
+  color: #ff9878;
+}
+
+/* El borde activo del marcador coincide con el color de cada jugador. */
+.dato-juego.jugador-uno.jugador-activo {
+  border-color: #56d6c3;
+  box-shadow: 0 0 0 2px #56d6c3;
+}
+
+.dato-juego.jugador-dos.jugador-activo {
+  border-color: #ff9878;
+  box-shadow: 0 0 0 2px #ff9878;
+}
+
+/* Conservamos el color del jugador en todas las cartas de su pareja acertada. */
+.carta.pareja-jugador-1 {
+  border-color: #56d6c3;
+  box-shadow: 0 0 0 1px #56d6c3;
+}
+
+.carta.pareja-jugador-2 {
+  border-color: #ff9878;
+  box-shadow: 0 0 0 1px #ff9878;
+}
+
+/* Ajustamos la selección y el marcador para pantallas angostas. */
+@media (max-width: 600px) {
+  .seleccion-modo {
+    box-sizing: border-box;
+    padding: 24px 18px;
+  }
+
+  .panel-juego {
+    flex-wrap: wrap;
+  }
 }

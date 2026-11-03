@@ -31,8 +31,14 @@
 
 /* Adaptación para pantallas pequeñas. */
 @media (max-width: 480px) {
+  /* Reducimos el contenido para que también quepan las cartas del nivel 3. */
   .carta {
-    min-height: 85px;
-    font-size: 2rem;
+    min-height: clamp(48px, 16vw, 75px);
+    font-size: clamp(1rem, 6vw, 1.8rem);
+  }
+
+  /* Escalamos el símbolo visible para mantenerlo dentro de cartas angostas. */
+  .carta-reverso {
+    font-size: clamp(1rem, 6vw, 1.8rem);
   }
 }

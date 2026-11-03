@@ -1,16 +1,34 @@
-# React + Vite
+# Memotest
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Juego de memoria con cartas de temática espacial. Cada partida dura 90 segundos
+y el reloj comienza al descubrir la primera carta.
 
-Currently, two official plugins are available:
+## Modalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Solitario:** encontrá todas las parejas antes de que se termine el tiempo.
+- **1 contra 1:** dos jugadores comparten el teclado o dispositivo y se turnan.
+  Cada pareja encontrada suma un punto y permite conservar el turno; si las
+  cartas no coinciden, se suma una falla y el turno pasa al otro jugador. Gana
+  quien reúna más parejas cuando se complete el tablero o se termine el tiempo.
+  Si ambos jugadores encuentran la misma cantidad de parejas, gana quien tenga
+  menos fallas; si también empatan en fallas, la partida termina en empate.
+  Antes de empezar, se puede elegir una partida rápida en cualquier nivel o
+  una serie al mejor de 3: se juega primero el nivel 1 y luego el nivel 2.
+  Quien gane ambas rondas se lleva la serie; si después de dos rondas no hay
+  ganador, se juega el nivel 3.
 
-## React Compiler
+## Dificultad
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Antes de cada partida, elegí uno de los tres niveles disponibles en cualquiera
+de las modalidades:
 
-## Expanding the ESLint configuration
+- **Nivel 1:** tablero de 3 x 4, con 6 parejas.
+- **Nivel 2:** tablero de 4 x 5, con 10 parejas.
+- **Nivel 3:** tablero de 5 x 6, con 15 parejas.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Desarrollo
+
+Desde esta carpeta, ejecutá `npm install` para instalar las dependencias y
+`npm run dev` para iniciar la aplicación.
+
+Para comprobar los cambios, ejecutá `npm run lint` y `npm run build`.
