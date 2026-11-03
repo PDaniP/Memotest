@@ -16,7 +16,7 @@ function Tablero({
       aria-label="Tablero de cartas"
       style={{ "--columnas-tablero": columnas }}
     >
-      {/* El tablero usa las columnas indicadas por el nivel seleccionado. */}
+      {/*el tablero usa las columnas indicadas por el nivel seleccionado */}
       {/*map() transforma cada elemento del array en una carta*/}
       {cartas.map((carta) => (
         <Carta 

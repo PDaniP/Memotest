@@ -1,44 +1,44 @@
 
-/* Estilo base de cada carta. */
+/*estilo base de cada carta. */
 .carta {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 120px;
+  min-height: 0;
   border: 2px solid #8b6bd6;
   border-radius: 12px;
   background-color: #28233c;
   color: #f0e6d2;
-  font-size: 2.5rem;
+  font-size: clamp(1rem, 2.5vw, 1.6rem);
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-/* Efecto visual al pasar el cursor. */
+/*efecto visual al pasar el cursor*/
 .carta:hover {
   transform: translateY(-3px);
 }
 
-/* Apariencia de una carta descubierta. */
+/*apariencia de una carta descubierta*/
 .carta.descubierta {
   background-color: #443665;
 }
 
-/* Contenedor del símbolo o del signo de interrogación. */
+/*contenedor del símbolo o del signo de interrogación*/
 .carta-reverso {
   user-select: none;
 }
 
-/* Adaptación para pantallas pequeñas. */
+/*adaptación para pantallas pequeñas*/
 @media (max-width: 480px) {
-  /* Reducimos el contenido para que también quepan las cartas del nivel 3. */
+  /*reducimos el contenido para que también quepan las cartas del nivel 3*/
   .carta {
-    min-height: clamp(48px, 16vw, 75px);
-    font-size: clamp(1rem, 6vw, 1.8rem);
+    min-height: 0;
+    font-size: clamp(0.9rem, 4vw, 1.3rem);
   }
 
-  /* Escalamos el símbolo visible para mantenerlo dentro de cartas angostas. */
+  /*escalamos el símbolo visible para mantenerlo dentro de cartas angostas*/
   .carta-reverso {
-    font-size: clamp(1rem, 6vw, 1.8rem);
+    font-size: clamp(0.9rem, 4vw, 1.3rem);
   }
 }

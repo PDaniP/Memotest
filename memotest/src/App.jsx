@@ -4,7 +4,7 @@ import Tablero from "./components/Tablero";
 import PanelJuego from "./components/PanelJuego";
 import cartas from "./data/cartas";
 
-// Mezclamos el mazo recibido sin modificar los datos originales.
+//mezclamos el mazo recibido sin modificar los datos originales.
 function mezclarCartas(cartasNivel) {
   const mazoMezclado = [...cartasNivel];
 
@@ -20,23 +20,23 @@ function mezclarCartas(cartasNivel) {
 }
 
 function App() {
-  // Definimos las dimensiones y la cantidad de parejas de cada dificultad.
+  //definimos las dimensiones y la cantidad de parejas de cada dificultad
   const niveles = [
     { id: 1, nombre: "Nivel 1", filas: 3, columnas: 4, parejas: 6 },
     { id: 2, nombre: "Nivel 2", filas: 4, columnas: 5, parejas: 10 },
     { id: 3, nombre: "Nivel 3", filas: 5, columnas: 6, parejas: 15 },
   ];
 
-  // Guardamos la modalidad, el nivel elegido y las cartas de esa partida.
+  //guardamos la modalidad, el nivel elegido y las cartas de esa partida
   const [modoJuego, setModoJuego] = useState(null);
-  // Guardamos el formato del duelo y las rondas ganadas en una serie.
+  //guardamos el formato del duelo y las rondas ganadas en una serie
   const [modoDuelo, setModoDuelo] = useState(null);
   const [victoriasRondas, setVictoriasRondas] = useState([0, 0]);
   const [nivelJuego, setNivelJuego] = useState(null);
   const [cartasPartida, setCartasPartida] = useState([]);
   const totalParejas = nivelJuego?.parejas ?? 0;
 
-  // Conservamos los identificadores de las cartas visibles y de la jugada actual.
+  //conservamos los identificadores de las cartas visibles y de la jugada actual
   const [cartasDescubiertas, setCartasDescubiertas] = useState([]);
   const [cartasSeleccionadas, setCartasSeleccionadas] = useState([]);
 

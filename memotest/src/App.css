@@ -153,9 +153,9 @@
   /* La cantidad de columnas se recibe desde el nivel activo. */
   grid-template-columns: repeat(var(--columnas-tablero), minmax(0, 1fr));
 
-  /* Limitamos el ancho para conservar cartas legibles en tableros grandes. */
-  max-width: 900px;
-  gap: clamp(6px, 1.5vw, 14px);
+  /* Compactamos las cartas y mantenemos varias columnas por cada fila. */
+  max-width: 760px;
+  gap: clamp(5px, 1vw, 10px);
 
   /* Centra la cuadrícula. */
   justify-content: center;
@@ -169,7 +169,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 3 / 4;
+  /* Usamos cartas cuadradas para reducir el alto total de cada tablero. */
+  aspect-ratio: 1;
   width: 100%;
 
   border: 2px solid #8b6bd6;
@@ -177,7 +178,7 @@
   background-color: #3a3155;
   color: #f0e6d2;
 
-  font-size: 2rem;
+  font-size: clamp(1rem, 2.5vw, 1.6rem);
   cursor: pointer;
 }
 
@@ -188,7 +189,7 @@
 
 /* Símbolo visible en el reverso de las cartas. */
 .carta-reverso {
-  font-size: 2.2rem;
+  font-size: clamp(1rem, 2.8vw, 1.7rem);
   font-weight: bold;
 }
 

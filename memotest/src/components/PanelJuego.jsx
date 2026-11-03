@@ -1,4 +1,4 @@
-// Este componente muestra el estado de la partida según la modalidad elegida.
+//este componente muestra el estado de la partida según la modalidad elegida
 function PanelJuego({
   tiempoRestante,
   modoJuego,
@@ -13,13 +13,13 @@ function PanelJuego({
 }) {
   return (
     <section className="panel-juego" aria-label="Estado de la partida">
-      {/* El tiempo se comparte entre los participantes y limita cada partida. */}
+      {/*el tiempo se comparte entre los participantes y limita cada partida*/}
       <div className="dato-juego">
         <span className="etiqueta">Tiempo</span>
         <span className="valor">{tiempoRestante} s</span>
       </div>
 
-      {/* Indicamos el nivel y las dimensiones del tablero durante la partida. */}
+      {/*indicamos el nivel y las dimensiones del tablero durante la partida*/}
       <div className="dato-juego">
         <span className="etiqueta">{nivelJuego.nombre}</span>
         <span className="valor">
@@ -27,7 +27,7 @@ function PanelJuego({
         </span>
       </div>
 
-      {/* En la serie mostramos cuántas rondas ganó cada jugador. */}
+      {/*en la serie mostramos cuantas rondas gano cada jugador*/}
       {modoDuelo === "mejor-de-3" && (
         <div className="dato-juego">
           <span className="etiqueta">Rondas ganadas</span>
@@ -38,7 +38,7 @@ function PanelJuego({
       )}
 
       {modoJuego === "solitario" ? (
-        // En solitario se informa el avance hacia el total de parejas.
+        //en solitario se informa el avance hacia el total de parejas
         <div className="dato-juego">
           <span className="etiqueta">Parejas</span>
           <span className="valor">
@@ -46,7 +46,7 @@ function PanelJuego({
           </span>
         </div>
       ) : (
-        // En el duelo se resaltan los puntajes y el turno que está activo.
+        //en el duelo se resaltan los puntajes y el turno que está activo
         <>
           <div
             className={`dato-juego jugador-uno ${jugadorActual === 0 ? "jugador-activo" : ""}`}

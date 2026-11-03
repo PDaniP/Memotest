@@ -1,7 +1,7 @@
 import './Carta.css';
 
 function Carta({ carta, estaDescubierta, jugadorPareja, alHacerClic }) {
-    // Indicamos con una clase qué jugador encontró la pareja en el duelo.
+    //indicamos con una clase que jugador encontro la pareja en el duelo
     const claseJugador = jugadorPareja === undefined ? '' : `pareja-jugador-${jugadorPareja + 1}`;
 
     return (
