@@ -31,4 +31,3 @@ de las modalidades:
 Desde esta carpeta, ejecutá `npm install` para instalar las dependencias y
 `npm run dev` para iniciar la aplicación.
 
-Para comprobar los cambios, ejecutá `npm run lint` y `npm run build`.
