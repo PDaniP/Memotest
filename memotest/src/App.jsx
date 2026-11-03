@@ -6,16 +6,16 @@ import cartas from "./data/cartas";
 
 //mezclamos el mazo recibido sin modificar los datos originales.
 function mezclarCartas(cartasNivel) {
-  const mazoMezclado = [...cartasNivel];
-
+  const mazoMezclado = [...cartasNivel];//usando ... copiamos el arreglo para no alterar el original.
+  //mezclo las cards
   for (let indice = mazoMezclado.length - 1; indice > 0; indice -= 1) {
-    const indiceAleatorio = Math.floor(Math.random() * (indice + 1));
+    const indiceAleatorio = Math.floor(Math.random() * (indice + 1));//genero indice aleatorio
+    //intercambio los valores
     [mazoMezclado[indice], mazoMezclado[indiceAleatorio]] = [
       mazoMezclado[indiceAleatorio],
       mazoMezclado[indice],
     ];
   }
-
   return mazoMezclado;
 }
 
@@ -29,6 +29,7 @@ function App() {
 
   //guardamos la modalidad, el nivel elegido y las cartas de esa partida
   const [modoJuego, setModoJuego] = useState(null);
+
   //guardamos el formato del duelo y las rondas ganadas en una serie
   const [modoDuelo, setModoDuelo] = useState(null);
   const [victoriasRondas, setVictoriasRondas] = useState([0, 0]);
@@ -40,28 +41,29 @@ function App() {
   const [cartasDescubiertas, setCartasDescubiertas] = useState([]);
   const [cartasSeleccionadas, setCartasSeleccionadas] = useState([]);
 
-  // Registramos las parejas encontradas y los puntos de cada jugador.
+  //registramos las parejas encontradas y los puntos de cada jugador
   const [parejasEncontradas, setParejasEncontradas] = useState([]);
-  // Guardamos qué jugador encontró cada pareja para colorear sus cartas.
+
+  //guardamos que jugador encontro cada pareja para colorear sus cartas
   const [jugadorPorPareja, setJugadorPorPareja] = useState({});
   const [puntajes, setPuntajes] = useState([0, 0]);
 
-  // Contamos los intentos fallidos de cada jugador para desempatar el duelo.
+  //contamos los intentos fallidos de cada jugador para desempatar el duelo
   const [fallas, setFallas] = useState([0, 0]);
 
-  // Controlamos el turno, el bloqueo temporal y el tiempo de la partida.
+  //controlamos el turno, el bloqueo temporal y el tiempo de la partida
   const [jugadorActual, setJugadorActual] = useState(0);
   const [tableroBloqueado, setTableroBloqueado] = useState(false);
   const [tiempoRestante, setTiempoRestante] = useState(90);
   const [partidaIniciada, setPartidaIniciada] = useState(false);
   const timeoutDesempate = useRef(null);
 
-  // Finalizamos cuando se encuentran todas las parejas o se agota el tiempo.
+  //finalizamos cuando se encuentran todas las parejas o se agota el tiempo
   const victoria = parejasEncontradas.length === totalParejas;
   const derrota = tiempoRestante === 0;
   const partidaTerminada = Boolean(modoJuego) && partidaIniciada && (victoria || derrota);
 
-  // Seleccionamos el modo antes de mostrar las dificultades disponibles.
+  //seleccionamos el modo antes de mostrar las dificultades disponibles
   function seleccionarModo(modo) {
     clearTimeout(timeoutDesempate.current);
     setModoJuego(modo);
@@ -81,7 +83,7 @@ function App() {
     setPartidaIniciada(false);
   }
 
-  // Iniciamos el formato elegido y preparamos el primer tablero de la serie.
+  //iniciamos el formato elegido y preparamos el primer tablero de la serie
   function seleccionarModoDuelo(modo) {
     setModoDuelo(modo);
     setVictoriasRondas([0, 0]);
@@ -91,7 +93,7 @@ function App() {
     }
   }
 
-  // Creamos un mazo con las parejas necesarias e iniciamos el nivel elegido.
+  //creamos un mazo con las parejas necesarias e iniciamos el nivel elegido
   function seleccionarNivel(nivel) {
     clearTimeout(timeoutDesempate.current);
     setNivelJuego(nivel);
@@ -108,7 +110,7 @@ function App() {
     setPartidaIniciada(false);
   }
 
-  // Actualizamos el temporizador solo mientras una partida está activa.
+  //actualizamos el temporizador solo mientras una partida esta activa
   useEffect(() => {
     if (!partidaIniciada || partidaTerminada) {
       return undefined;
@@ -121,10 +123,10 @@ function App() {
     return () => clearInterval(intervalo);
   }, [partidaIniciada, partidaTerminada]);
 
-  // Limpiamos cualquier espera pendiente al desmontar la aplicación.
+  //limpiamos cualquier espera pendiente al desmontar la aplicacion
   useEffect(() => () => clearTimeout(timeoutDesempate.current), []);
 
-  // Procesamos una carta y resolvemos cada intento cuando se elige la segunda.
+  //procesamos una carta y resolvemos cada intento cuando se elige la segunda
   function descubrirCarta(idCarta) {
     if (!modoJuego || partidaTerminada || tableroBloqueado) {
       return;
@@ -139,7 +141,7 @@ function App() {
       return;
     }
 
-    // El reloj comienza con la primera carta elegida.
+    //el reloj comienza con la primera carta elegida
     if (!partidaIniciada) {
       setPartidaIniciada(true);
     }
@@ -157,13 +159,13 @@ function App() {
       (carta) => carta.id === seleccionActualizada[0],
     );
 
-    // Al acertar, sumamos una pareja y el turno queda en el mismo jugador.
+    //al acertar, sumamos una pareja y el turno queda en el mismo jugador
     if (primeraCarta.parejaId === cartaSeleccionada.parejaId) {
       setParejasEncontradas((parejasAnteriores) => [
         ...parejasAnteriores,
         primeraCarta.parejaId,
       ]);
-      // Asociamos la pareja al jugador que acertó solo en el modo de duelo.
+      //asociamos la pareja al jugador que acerto solo en el modo de duelo
       if (modoJuego === "duelo") {
         setJugadorPorPareja((parejasAnteriores) => ({
           ...parejasAnteriores,
@@ -179,7 +181,7 @@ function App() {
       return;
     }
 
-    // Si no coinciden, mostramos ambas cartas y luego pasamos el turno.
+    //si no coinciden, mostramos ambas cartas y luego pasamos el turno
     if (modoJuego === "duelo") {
       setFallas((fallasAnteriores) =>
         fallasAnteriores.map((fallasJugador, indice) =>
@@ -202,7 +204,7 @@ function App() {
     }, 1000);
   }
 
-  // Volvemos a la selección de modalidad después de terminar una partida.
+  //volvemos a la seleccion de modalidad despues de terminar una partida
   function volverASeleccion() {
     clearTimeout(timeoutDesempate.current);
     setModoJuego(null);
@@ -222,7 +224,7 @@ function App() {
     setPartidaIniciada(false);
   }
 
-  // Resolvemos el duelo por parejas y usamos las fallas para desempatar.
+  //resolvemos el duelo por parejas y usamos las fallas para desempatar
   const resultadoDuelo =
     puntajes[0] !== puntajes[1]
       ? puntajes[0] > puntajes[1]
@@ -234,7 +236,7 @@ function App() {
           : "Ganó el jugador 2 por tener menos fallas"
         : "Empate";
 
-  // Identificamos al ganador de esta ronda con las mismas reglas del duelo rápido.
+  //identificamos al ganador de esta ronda con las mismas reglas del duelo rapido
   const ganadorRonda =
     puntajes[0] !== puntajes[1]
       ? puntajes[0] > puntajes[1]
@@ -246,7 +248,7 @@ function App() {
             : 1
           : null;
 
-  // Sumamos provisionalmente la ronda actual para saber si la serie ya terminó.
+  //sumamos provisionalmente la ronda actual para saber si la serie ya termino
   const victoriasActualizadas = victoriasRondas.map((victorias, indice) =>
     partidaTerminada && ganadorRonda === indice ? victorias + 1 : victorias,
   );
@@ -261,7 +263,7 @@ function App() {
           ? 0
           : 1;
 
-  // Preparamos el siguiente nivel y conservamos las victorias acumuladas.
+  //preparamos el siguiente nivel y conservamos las victorias acumuladas
   function avanzarSiguienteRonda() {
     setVictoriasRondas(victoriasActualizadas);
     const siguienteNivel = niveles.find((nivel) => nivel.id === nivelJuego.id + 1);
@@ -275,7 +277,7 @@ function App() {
       </header>
 
       {!modoJuego ? (
-        // Permitimos elegir entre una partida individual y un duelo local.
+        //permitimos elegir entre una partida individual y un duelo local
         <section className="seleccion-modo" aria-labelledby="titulo-modos">
           <h2 id="titulo-modos">¿Cómo querés jugar?</h2>
           <p>Elegí una modalidad para comenzar una nueva partida.</p>
@@ -297,7 +299,7 @@ function App() {
           </div>
         </section>
       ) : modoJuego === "duelo" && !modoDuelo ? (
-        // Permitimos elegir entre un duelo rápido y una serie al mejor de tres.
+        //permitimos elegir entre un duelo rapido y una serie al mejor de tres
         <section className="seleccion-modo" aria-labelledby="titulo-modo-duelo">
           <h2 id="titulo-modo-duelo">Elegí el modo de juego</h2>
           <p>Seleccioná cómo quieren competir los dos jugadores.</p>
@@ -333,7 +335,7 @@ function App() {
           </button>
         </section>
       ) : !nivelJuego ? (
-        // Ofrecemos las tres dimensiones de tablero para el modo seleccionado.
+        //ofrecemos las tres dimensiones de tablero para el modo seleccionado
         <section className="seleccion-modo" aria-labelledby="titulo-niveles">
           <h2 id="titulo-niveles">Elegí la dificultad</h2>
           <p>
@@ -372,7 +374,7 @@ function App() {
         </section>
       ) : (
         <>
-          {/* Mostramos tiempo, parejas y puntajes según la modalidad elegida. */}
+          {/*mostramos tiempo, parejas y puntajes segun la modalidad elegida*/}
           <PanelJuego
             tiempoRestante={tiempoRestante}
             modoJuego={modoJuego}
@@ -388,7 +390,7 @@ function App() {
             }
           />
 
-          {/* Informamos el resultado y permitimos volver a elegir una modalidad. */}
+          {/*informamos el resultado y permitimos volver a elegir una modalidad*/}
           {partidaTerminada && (
             <section className="resultado-partida" aria-live="polite">
               {modoJuego === "solitario" ? (
@@ -454,7 +456,7 @@ function App() {
             </section>
           )}
 
-          {/* El tablero recibe el mazo mezclado y las cartas que siguen visibles. */}
+          {/*el tablero recibe el mazo mezclado y las cartas que siguen visibles*/}
           <Tablero
             cartas={cartasPartida}
             columnas={nivelJuego.columnas}
