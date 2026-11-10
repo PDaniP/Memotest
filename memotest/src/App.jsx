@@ -7,14 +7,11 @@ import cartas from "./data/cartas";
 //mezclamos el mazo recibido sin modificar los datos originales.
 function mezclarCartas(cartasNivel) {
   const mazoMezclado = [...cartasNivel];//usando ... copiamos el arreglo para no alterar el original.
-  //mezclo las cards
+  //mezclo las cards, empiezo desde la ultima posicion y voy intercambiando con una posicion aleatoria
   for (let indice = mazoMezclado.length - 1; indice > 0; indice -= 1) {
     const indiceAleatorio = Math.floor(Math.random() * (indice + 1));//genero indice aleatorio
     //intercambio los valores
-    [mazoMezclado[indice], mazoMezclado[indiceAleatorio]] = [
-      mazoMezclado[indiceAleatorio],
-      mazoMezclado[indice],
-    ];
+    [mazoMezclado[indice], mazoMezclado[indiceAleatorio]] = [mazoMezclado[indiceAleatorio], mazoMezclado[indice],];
   }
   return mazoMezclado;
 }
@@ -64,6 +61,7 @@ function App() {
   const partidaTerminada = Boolean(modoJuego) && partidaIniciada && (victoria || derrota);
 
   //seleccionamos el modo antes de mostrar las dificultades disponibles
+  //y establezco los estados para empezar una partida desde 0
   function seleccionarModo(modo) {
     clearTimeout(timeoutDesempate.current);
     setModoJuego(modo);
@@ -121,7 +119,7 @@ function App() {
     }, 1000);
 
     return () => clearInterval(intervalo);
-  }, [partidaIniciada, partidaTerminada]);
+  }, [partidaIniciada, partidaTerminada]);//hace que se vuelva a ejecutar el efecto cuando cambie cualquiera de estos estados
 
   //limpiamos cualquier espera pendiente al desmontar la aplicacion
   useEffect(() => () => clearTimeout(timeoutDesempate.current), []);
